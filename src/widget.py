@@ -22,4 +22,14 @@ def mask_account_card(card_name: str) -> str:
             card_account_mask = get_mask_account(account_number)
         return f"Счет {card_account_mask}"
 
+
+def get_date(date: str) -> str:
+    match = re.match(r"(\d{4})-(\d{2})-(\d{2})T.*", date)
+    if match:
+        year, month, day = match.groups()
+        return f"{day}.{month}.{year}"
+    else:
+        return "Неверный формат"
+
 print(mask_account_card(card_name="Счет 73654108430135874305"))
+print(get_date(date="2024-03-12T02:26:18.671407"))
