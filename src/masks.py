@@ -39,7 +39,7 @@ def get_mask_card_number(card_number: str) -> str:
     return masked_card_result_with_space
 
 
-print(get_mask_card_number(card_number="6767567899008009"))
+print(get_mask_card_number(card_number="7000792289606361"))
 
 """
 Функция принимает номер карты и маскирует его,
