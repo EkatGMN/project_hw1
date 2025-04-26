@@ -34,4 +34,4 @@ def get_date(date: str) -> str:
 
 
 print(mask_account_card(card_name="Счет 73654108430135874305"))
-print(get_date(date="2024-03-13T02:26:18.671407"))
+print(get_date(date="2024-03-12T02:26:18.67"))
