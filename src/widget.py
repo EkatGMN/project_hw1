@@ -3,10 +3,11 @@ from src.masks import get_mask_account
 import re
 from datetime import datetime
 
+
 def mask_account_card(card_name: str) -> str:
     """Функция принимает тип и номер карты или счета,
-     маскирует номер карты (пример вывода Visa Platinum 7000 79** **** 6361)
-     и номер счета (пример вывода: Счет **4305)"""
+    маскирует номер карты (пример вывода Visa Platinum 7000 79** **** 6361)
+    и номер счета (пример вывода: Счет **4305)"""
     if "Visa" in card_name or "Maestro" in card_name:
         card_number = ""
         card_type = ""
@@ -28,16 +29,15 @@ def mask_account_card(card_name: str) -> str:
         return "Введен неверный номер"
 
 
-
 def get_date(date: str) -> str:
     """Функция преобразует дату в формате в формате
-"2024-03-11T02:26:18.671407" в дату ДД.ММ.ГГГГ"""
+    "2024-03-11T02:26:18.671407" в дату ДД.ММ.ГГГГ"""
     match = re.match(r"(\d{4})-(\d{2})-(\d{2})T.*", date)
     if match:
         year, month, day = match.groups()
         result = "{day}.{month}.{year}"
         try:
-            datetime.strptime(date[:10], '%Y-%m-%d')
+            datetime.strptime(date[:10], "%Y-%m-%d")
             return f"{day}.{month}.{year}"
         except ValueError:
             return "Неверный формат"

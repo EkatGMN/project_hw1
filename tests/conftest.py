@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.fixture
 def filter_state():
     return [
@@ -8,5 +9,5 @@ def filter_state():
         {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
         {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
         {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
-        {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"}]
-
+        {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
+    ]

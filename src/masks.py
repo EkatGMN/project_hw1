@@ -13,7 +13,7 @@ XXXX XX** **** XXXX
 
 def get_mask_card_number(card_number: str) -> str:
     card_number = card_number.replace(" ", "")
-        # проверяем хватает цифр в номере карты
+    # проверяем хватает цифр в номере карты
     if len(card_number) != 16:
         return "Введен неверный номер карты"
 
@@ -34,7 +34,7 @@ def get_mask_card_number(card_number: str) -> str:
         masked_card_result = []  # список для хранения по четыре цифры номера карты
 
         for i in range(0, len(masked_card), 4):
-            masked_card_result.append(masked_card[i: i + 4])
+            masked_card_result.append(masked_card[i : i + 4])
 
         masked_card_result_with_space = " ".join(masked_card_result)
 
