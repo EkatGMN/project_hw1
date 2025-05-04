@@ -13,7 +13,7 @@ XXXX XX** **** XXXX
 
 def get_mask_card_number(card_number: str) -> str:
     card_number = card_number.replace(" ", "")
-    # проверяем хватает цифр в номере карты
+        # проверяем хватает цифр в номере карты
     if len(card_number) != 16:
         return "Введен неверный номер карты"
 
@@ -22,24 +22,26 @@ def get_mask_card_number(card_number: str) -> str:
     # чтобы знать, какую заменить на *
 
     for number in card_number:
-        counter += 1
-        if 6 < counter <= len(card_number) - 4:
-            result.append("*")
+        if number.isdigit():
+            counter += 1
+            if 6 < counter <= len(card_number) - 4:
+                result.append("*")
+            else:
+                result.append(number)
+            masked_card = "".join(result)
         else:
-            result.append(number)
-    masked_card = "".join(result)
+            return "Введены буквы вместо цифр"
+        masked_card_result = []  # список для хранения по четыре цифры номера карты
 
-    masked_card_result = []  # список для хранения по четыре цифры номера карты
+        for i in range(0, len(masked_card), 4):
+            masked_card_result.append(masked_card[i: i + 4])
 
-    for i in range(0, len(masked_card), 4):
-        masked_card_result.append(masked_card[i: i + 4])
-
-    masked_card_result_with_space = " ".join(masked_card_result)
+        masked_card_result_with_space = " ".join(masked_card_result)
 
     return masked_card_result_with_space
 
 
-print(get_mask_card_number(card_number="7000792289606361"))
+print(get_mask_card_number(card_number="7OOO792289606361"))
 
 """
 Функция принимает номер карты и маскирует его,
@@ -50,9 +52,14 @@ print(get_mask_card_number(card_number="7000792289606361"))
 
 def get_mask_account(card_account: str) -> str:
     card_account = card_account.replace(" ", "")
+    if len(card_account) != 20:
+        return "Введен неверный номер счета"
+    for number in card_account:
+        if number.isdigit():
+            last_part = str(card_account[-4:])
+            return f"**{last_part}"
+        else:
+            return "Введен неверный номер счета"
 
-    last_part = str(card_account[-4:])
-    return f"**{last_part}"
 
-
-print(get_mask_account(card_account="543567899008765"))
+print(get_mask_account(card_account=""))

@@ -1,7 +1,7 @@
-from masks import get_mask_card_number
-from masks import get_mask_account
+from src.masks import get_mask_card_number
+from src.masks import get_mask_account
 import re
-
+from datetime import datetime
 
 def mask_account_card(card_name: str) -> str:
     """Функция принимает тип и номер карты или счета,
@@ -17,14 +17,16 @@ def mask_account_card(card_name: str) -> str:
                 card_type += symbol
         card_number_mask = get_mask_card_number(card_number)
         return f"{card_type}{card_number_mask}"
-    else:
-        if "Счет" in card_name:
-            account_number = ""
-            for symbol in card_name:
-                if symbol.isdigit():
-                    account_number += symbol
-            card_account_mask = get_mask_account(account_number)
+    elif "Счет" in card_name:
+        account_number = ""
+        for symbol in card_name:
+            if symbol.isdigit():
+                account_number += symbol
+        card_account_mask = get_mask_account(account_number)
         return f"Счет {card_account_mask}"
+    else:
+        return "Введен неверный номер"
+
 
 
 def get_date(date: str) -> str:
@@ -33,10 +35,15 @@ def get_date(date: str) -> str:
     match = re.match(r"(\d{4})-(\d{2})-(\d{2})T.*", date)
     if match:
         year, month, day = match.groups()
-        return f"{day}.{month}.{year}"
+        result = "{day}.{month}.{year}"
+        try:
+            datetime.strptime(date[:10], '%Y-%m-%d')
+            return f"{day}.{month}.{year}"
+        except ValueError:
+            return "Неверный формат"
     else:
         return "Неверный формат"
 
 
 print(mask_account_card(card_name="Счет 73654108430135874305"))
-print(get_date(date="2024-03-12T02:26:18.67"))
+print(get_date(date="2024-13-12T02:26:18.67"))
